@@ -10,7 +10,7 @@ class AnswerSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Answer
-        exclude =["qeustion","voters","updated_at"]
+        exclude =["question","voters","updated_at"]
         
     def get_created_at(self, instance):
         return instance.created_at.strftime("%B %d %Y")
@@ -40,6 +40,6 @@ class QuestionSerializer(serializers.ModelSerializer):
     def get_answers_count(self, instance):
         return instance.answers.count()
     
-    def get_user_has_asnwered(self, instance):
+    def get_user_has_answered(self, instance):
         request = self.context.get("request")
         return instance.answers.filter(author=request.user).exists()
