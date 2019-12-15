@@ -32,8 +32,13 @@
             <hr>
         </div>
         <div class="container">
-            <AnswerComponent v-for="(answer, index) in answers" :requestUser="requestUser" :answer="answer" :key="index" @delete-answer="deleteAnswer" />
-             <div class="my-4">
+            <AnswerComponent v-for="(answer, index) in answers" 
+            :requestUser="requestUser" 
+            :answer="answer" 
+            :key="index"
+             @delete-answer="deleteAnswer" 
+             />
+            <div class="my-4">
                 <p v-show="loadingAnswers">...loading...</p>
                 <button v-show="next" @click="getQuestionAnswers" class="btn btn-sm btn-outline-success">Load More</button>
             </div>
@@ -127,7 +132,7 @@ export default {
             }
         },
         async deleteAnswer(answer){
-            let endpoint = `/api/questions/${answer.id}/`;
+            let endpoint = `/api/answers/${answer.id}/`;
             try{
                 await apiService(endpoint, "DELETE")
                 this.$delete(this.answers, this.answers.indexOf(answer))
