@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Question from "../views/Question.vue";
+import NotFound from "../views/NotFound.vue";
 import QuestionEditor from "../views/QuestionEditor.vue";
 import AnswerEditor from "../views/AnswerEditor.vue";
 
@@ -20,9 +21,10 @@ const routes = [
     props: true,
   },
   {
-    path: "/ask",
+    path: "/ask/:slug?", // ? makes 'slug' optional in this code 
     name: "question-editor",
     component: QuestionEditor,
+    props: true,
     
   },
   {
@@ -31,6 +33,11 @@ const routes = [
     component: AnswerEditor,
     props: true,
   },
+  {
+    path: "*",
+    name: 'page-not-found',
+    component: NotFound,
+  }
   
 ];
 
